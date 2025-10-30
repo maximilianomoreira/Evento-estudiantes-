@@ -25,7 +25,7 @@
         <div class="login_action">
             <button type="submit" class="login_button">Ingresar</button>
         </div>
-        <h2>¿No tienes cuenta?</h2>
+        <h2>¿No tenes cuenta?</h2>
         <div class="login_action">
             <button type="button" class="login_button">Crear cuenta</button>
         </div>
