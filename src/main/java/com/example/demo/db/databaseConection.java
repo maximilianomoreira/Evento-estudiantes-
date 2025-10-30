@@ -13,7 +13,10 @@ public class databaseConection {
 
     static{
         try{
-            InputStream in = databaseConection.class.getResourceAsStream("/db.properties");
+            InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream("db.properties");
+            if (in == null) {
+                throw new RuntimeException("No se encontro el archivo db.properties en el classpath.");
+            }
             reader.load(in);
 
         }catch(Exception e){

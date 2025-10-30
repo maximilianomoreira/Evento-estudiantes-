@@ -6,13 +6,12 @@ import com.example.demo.model.Students;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class StudentsDAO {
 
-
-
-    public void createStudent(Students s) {
-        String sql = "INSERT INTO Students(name,email,password) VALUES (?,?,?)";
+    public boolean createStudent(Students s) {
+        String sql = "INSERT INTO students(name, email, password) VALUES (?,?,?)";
         Connection con = databaseConection.getInstancia().getConnection();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -20,26 +19,31 @@ public class StudentsDAO {
             ps.setString(2, s.getEmail());
             ps.setString(3, s.getPassword());
             ps.executeUpdate();
-            System.out.println("Student created");
+            return true;
         } catch (Exception e) {
-            System.out.println("Error creating student: " + e.getMessage());
+            System.out.println("Error al crear estudiante: " + e.getMessage());
+            return false;
         }
     }
-    public void getStudentById(int id) {
-        String sql = "SELECT * FROM Students WHERE id = ?";
+    public Students validarLogin(String email, String password) {
+        String sql = "SELECT * FROM students WHERE email = ? AND password = ?";
         Connection con = databaseConection.getInstancia().getConnection();
         try {
-            PreparedStatement ps = con.prepareStatement()
-        } catch (RuntimeException e)
-            {
-            System.out.println("Error getting student by id: " + e.getMessage());
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, email);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return new Students(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("email"),
+                        rs.getString("password")
+                );
             }
+        } catch (Exception e) {
+            System.out.println("Error al validar login: " + e.getMessage());
+        }
+        return null;
     }
-
-
-
-
-
-
-
 }

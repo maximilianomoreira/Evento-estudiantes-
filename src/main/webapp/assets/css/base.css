@@ -1,0 +1,49 @@
+:root {
+    --color-principal: #007BFF;
+    --color-principal-oscuro: #131313;
+    --color-blanco: #ffffff;
+    --color-grisclaro: #d6d6d6;
+    --color-grismedio: #9a9a9a;
+    --color-grisoscuro: #2a2a2a;
+    --color-oscuro: #191919;
+    --color-rojo: #ec3435;
+    --fuente-base: "Titillium Web", system-ui, sans-serif;
+    --radio-md: 12px;
+    --sombra-suave: 0 8px 28px rgba(0, 0, 0, 0.9);
+    --transicion: 160ms ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--color-principal-oscuro);
+    color: var(--color-blanco);
+    font-family: var(--fuente-base);
+}
+
+.boton-primario {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-weight: 700;
+    border: 0;
+    border-radius: var(--radio-md);
+    padding: .9rem 1rem;
+    background: var(--color-principal);
+    color: #fff;
+    cursor: pointer;
+    transition: filter var(--transicion), transform var(--transicion);
+}
+
+.boton-primario:hover {
+    filter: brightness(1.1);
+}
+
+.boton-primario:active {
+    transform: translateY(1px) scale(0.98);
+}
